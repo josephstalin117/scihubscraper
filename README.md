@@ -16,7 +16,7 @@ from scraper import download_from_refs
 download_from_refs('articles-with-DOIs.txt', 'articles')
 ```
 
-###get_article()
+### get_article()
 
 This function downloads a single article's PDF based on its DOI.
 
