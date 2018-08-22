@@ -3,13 +3,23 @@ Downloads pdfs of journal articles from Sci-Hub (sci-hub.tw) based on their DOI.
 
 ## Examples
 
-Download articles from the txt file /articles-with-DOIs.txt with references on each line and DOIs at the end of each reference, saving the downloaded PDFs into the /articles directory:
+### download_from_refs()
+
+This function uses DOIs in a txt file to download a PDF for each DOI. DOIs can be at the end of a reference
+like in the articles-with-DOIs.txt example, or they can just be a list of DOIs, like in the just-DOIs.txt example.
+
+
+In this example, DOIs are taken from articles-with-DOIs.txt and downloaded into the articles directory, which will
+be created in the parent directory if it does not exist.
 ```
 from scraper import download_from_refs
 download_from_refs('articles-with-DOIs.txt', 'articles')
 ```
 
-Download the PDF of one article into the current directory based on its DOI:
+###get_article()
+
+This function downloads a single article's PDF based on its DOI.
+
 ```
 from scraper import get_article
 get_article('10.1016/j.system.2009.02.011')
