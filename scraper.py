@@ -24,7 +24,7 @@ def get_html(url):
     return html
 
 
-def get_article(doi, base_url='http://sci-hub.tw/', folder=''):
+def get_article(doi, base_url='https://sci-hub.hkvisa.net/', folder=''):
     """Downloads a single article based on its DOI."""
     # gets the HTML on the page for the article
     url = base_url + doi
@@ -33,13 +33,17 @@ def get_article(doi, base_url='http://sci-hub.tw/', folder=''):
     # with DOI 10.1515/probus-2015-0004
 
     html = get_html(url)
-
+    proxies = {
+        "http": "http://192.168.1.100:7890",
+        "https": "http://192.168.1.100:7890",
+    }
 
     time.sleep(1)
     # Finds the iframe containing the pdf
     iframe = html.find('iframe', {'id': 'pdf'})
 
     if iframe is not None:
+        print("test")
         # Downloads the article when iframe#pdf exists by using the link in its src attribute
         pdf_url = iframe['src']
         # handles error where URL in iframe doesn't have http:// at beginning
@@ -47,7 +51,9 @@ def get_article(doi, base_url='http://sci-hub.tw/', folder=''):
         if pdf_url.startswith('//'):
             pdf_url = 'http:' + pdf_url
 
-        pdf = requests.get(pdf_url)
+        headers = {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1'}
+        pdf = requests.get(pdf_url, proxies=proxies, headers=headers)
+        print(pdf)
         pdf_fn = pdf_url.split('/')[-1].split('.pdf')[0]
         new_fn = '{0}_{1}.pdf'.format(pdf_fn, doi.replace('/', ' '))
         file_path = os.path.join(folder, new_fn)
@@ -96,3 +102,7 @@ def download_from_refs(txt_file, folder='', item_delimiter='\n', subitem_delimit
 
     for doi in dois:
         get_article(doi, base_url=base_url, folder=folder)
+
+
+if __name__ == '__main__':
+    get_article('10.1109/TII.2017.2734686')
