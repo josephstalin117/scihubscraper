@@ -1,26 +1,15 @@
 # scihubscraper
 Downloads pdfs of journal articles from Sci-Hub (sci-hub.tw) based on their DOI.
 
-## Examples
+## 从SCI-HUB下载文章
 
-### download_from_refs()
+1. 构建DOIs.txt文件
+2. 调用`scraper.py`文件的`download_from_refs`的函数
+3. 下载相关文件
 
-This function uses DOIs in a txt file to download a PDF for each DOI. DOIs can be at the end of a reference
-like in the articles-with-DOIs.txt example, or they can just be a list of DOIs, like in the just-DOIs.txt example.
+## 从google scholar下载文献引用
 
+1. 调用`query_papers.py`文件
 
-In this example, DOIs are taken from articles-with-DOIs.txt and downloaded into the articles directory, which will
-be created in the parent directory if it does not exist.
-```
-from scraper import download_from_refs
-download_from_refs('articles-with-DOIs.txt', 'articles')
-```
-
-### get_article()
-
-This function downloads a single article's PDF based on its DOI.
-
-```
-from scraper import get_article
-get_article('10.1016/j.system.2009.02.011')
-```
+## 解析pdf文件
+1. 调用`paper_parse.py`文件

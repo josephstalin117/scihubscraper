@@ -131,3 +131,9 @@ dmypy.json
 download_files/*
 
 *.pdf
+*.zip
+*.csv
+*.xlsx
+*.xls
+176
+176fellow筛选

@@ -42,6 +42,8 @@ def get_article(doi, base_url='https://sci-hub.hkvisa.net/', folder='', number=N
         #"https": "http://172.18.10.204:7890",
         "http": "http://127.0.0.1:7890",
         "https": "http://127.0.0.1:7890",
+        #"http": "http://127.0.0.1:8119",
+        #"https": "http://127.0.0.1:8119",
     }
 
     html = get_html(url, proxies=proxies)
@@ -125,6 +127,8 @@ def get_ieee(doi, number=None, folder=''):
 
 
 
+
+
 def download_from_refs(txt_file, folder='', item_delimiter='\n', subitem_delimiter=' ', base_url='https://sci-hub.hkvisa.net/', txt_file_encoding='UTF-8', start_at=0):
     """
     Iterates through txt file of references with DOIs, calling get_article on each DOI. Assumes DOI is at end.
@@ -166,5 +170,6 @@ def download_from_refs(txt_file, folder='', item_delimiter='\n', subitem_delimit
 
 if __name__ == '__main__':
     #get_article('10.1109/TII.2017.2734686')
-    download_from_refs('DOIs2.txt', '172')
+    download_from_refs('0620_176-DOIs.txt', '176')
+    #download_from_refs('DOIs2.txt', '16')
     #get_ieee('10.1109/HNICEM51456.2020.9400051', number=169)
