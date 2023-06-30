@@ -78,7 +78,7 @@ def get_article(doi, base_url='https://sci-hub.hkvisa.net/', folder='', number=N
         # Logs DOI when there is no iframe#pdf on the page
         logger.error(doi)
 
-
+# TODO: add support for downloading 
 def get_ieee(doi, number=None, folder=''):
     headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
 

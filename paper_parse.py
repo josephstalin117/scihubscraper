@@ -2,17 +2,6 @@ import sys, fitz
 import re
 import os
 
-print("test")
-fname = "test.pdf"
-doc = fitz.open(fname)  # open document
-out = open(fname + ".txt", "wb")  # open text output
-for page in doc:  # iterate the document pages
-    text = page.get_text().encode("utf8")  # get plain text (is in UTF-8)
-    out.write(text)  # write text of page
-    out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
-out.close()
-
-
 def get_pdf_content(file_path):
     doc = fitz.open(file_path)
     pages = []
@@ -75,6 +64,9 @@ if __name__ == '__main__':
     # filter pdf file
     for pdf in pdf_list:
         print(pdf)
+        if not pdf.endswith(".pdf"):
+            print("not pdf file")
+            continue
         pages = get_pdf_content("176/" + pdf)
         #is_fellow = parse_pdf_content(pages)
         is_fellow = parse_pdf_content(pages, "Fellow")
@@ -83,7 +75,7 @@ if __name__ == '__main__':
         #parse_pdf_content(pages, "Fellow")
 
     # save fellow list
-    with open('fellow.txt', 'a', encoding='utf-8') as f:
+    with open('fellow.txt', 'w', encoding='utf-8') as f:
         for fellow in fellow_list:
             f.write(str(fellow))
             f.write('\n')

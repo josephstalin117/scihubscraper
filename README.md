@@ -12,4 +12,10 @@ Downloads pdfs of journal articles from Sci-Hub (sci-hub.tw) based on their DOI.
 1. 调用`query_papers.py`文件
 
 ## 解析pdf文件
+
 1. 调用`paper_parse.py`文件
+
+
+## 解析论文的参考文献
+
+1. 调用`ref_parse.py`文件
